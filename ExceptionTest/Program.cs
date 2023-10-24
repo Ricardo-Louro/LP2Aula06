@@ -6,6 +6,7 @@ namespace ExceptionTest
     {
         static void Main()
         {
+            bool error = false;
             int i = 0;
             Console.Write("Insere um número inteiro: ");
 
@@ -13,12 +14,24 @@ namespace ExceptionTest
             {
                 i = Convert.ToInt32(Console.ReadLine());
             }
-            catch(Exception e)
+            catch(FormatException)
             {
-                Console.WriteLine($"Ocorreu o seguinte erro: {e.Message}");
+                Console.WriteLine($"Foi pedido um int");
+                error = true;
+            }
+            catch(OverflowException)
+            {
+                Console.WriteLine($"O número é demasiado grande ou pequeno para int.");
+                error = true;
+            }
+            catch(Exception)
+            {
+                Console.WriteLine($"Ocorreu um erro desconhecido.");
+                error = true;
             }
 
-            Console.WriteLine($"Número inserido: {i}");
+            if(!error)
+                Console.WriteLine($"Número inserido: {i}");
         }
     }
 }
