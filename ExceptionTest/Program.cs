@@ -29,9 +29,12 @@ namespace ExceptionTest
                 Console.WriteLine($"Ocorreu um erro desconhecido.");
                 error = true;
             }
-
-            if(!error)
-                Console.WriteLine($"Número inserido: {i}");
+            finally
+            {
+                if(!error)
+                    Console.WriteLine($"Número inserido: {i}");    
+                Console.WriteLine("Obrigado por utilizar este programa!");
+            }
         }
     }
 }
